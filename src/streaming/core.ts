@@ -288,7 +288,7 @@ export function jsonrepairCore({
       }
       i++
 
-      output.push(`"${input.substring(start, i)}"`)
+      output.push(JSON.stringify(input.substring(start, i)))
 
       return stack.update(Caret.afterValue)
     }

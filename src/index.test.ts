@@ -571,9 +571,25 @@ describe.each(implementations)('jsonrepair [$name]', ({ jsonrepair }) => {
       expect(jsonrepair('{regex: /standalone-styles.css/}')).toBe(
         '{"regex": "/standalone-styles.css/"}'
       )
-      expect(jsonrepair('{regex: /with escape char \\/ [a-z]_/}')).toBe(
-        '{"regex": "/with escape char \\/ [a-z]_/"}'
-      )
+      expect(jsonrepair('/[a-z]_/')).toBe('"/[a-z]_/"')
+
+      // with escape char
+      const repairedRegex = jsonrepair('/\\//')
+      expect(repairedRegex).toEqual('"/\\\\//"')
+      const parsedRegex = JSON.parse(repairedRegex)
+      const regex = new RegExp(parsedRegex.substring(1, parsedRegex.length - 1)) // remove the outer slashes /.../ with substring
+      expect(regex.test('/')).toEqual(true)
+    })
+
+    test('should escape quotes in repaired regular expressions', () => {
+      // Prevent a string like:
+      //     '/foo"; console.log(-1); "/'
+      // from being parsed into:
+      //     '"/foo"; console.log(-1); "/"'
+      // which would be executed as JavaScript when this JSON is being parsed with `eval`.
+      // See https://github.com/josdejong/jsonrepair/issues/150
+      // Note: using `eval` introduces security risks in general, best is to avoid it.
+      expect(jsonrepair('/foo"; console.log(-1); "/')).toBe('"/foo\\"; console.log(-1); \\"/"')
     })
 
     test('should concatenate strings', () => {

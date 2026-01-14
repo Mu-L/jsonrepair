@@ -848,7 +848,7 @@ export function jsonrepair(text: string): string {
       }
       i++
 
-      output += `"${text.substring(start, i)}"`
+      output += JSON.stringify(text.substring(start, i))
 
       return true
     }
