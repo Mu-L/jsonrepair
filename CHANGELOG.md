@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.13.3](https://github.com/josdejong/jsonrepair/compare/v3.13.2...v3.13.3) (2026-03-10)
+
+
+### Bug Fixes
+
+* [#156](https://github.com/josdejong/jsonrepair/issues/156) repair zero-width spaces ([ca329f7](https://github.com/josdejong/jsonrepair/commit/ca329f724ff79443d66898a40444887047ae65e6))
+
 ### [3.13.2](https://github.com/josdejong/jsonrepair/compare/v3.13.1...v3.13.2) (2026-01-14)
 
 
