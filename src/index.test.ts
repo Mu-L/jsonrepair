@@ -316,9 +316,14 @@ describe.each(implementations)('jsonrepair [$name]', ({ jsonrepair }) => {
 
     test('should replace special white space characters', () => {
       expect(jsonrepair('{"a":\u00a0"foo\u00a0bar"}')).toBe('{"a": "foo\u00a0bar"}')
+      expect(jsonrepair('{"a":\u180e"foo"}')).toBe('{"a": "foo"}')
+      expect(jsonrepair('{"a":\u2000"foo"}')).toBe('{"a": "foo"}')
+      expect(jsonrepair('{"a":\u2002"foo"}')).toBe('{"a": "foo"}')
+      expect(jsonrepair('{"a":\u200B"foo"}')).toBe('{"a": "foo"}')
       expect(jsonrepair('{"a":\u202F"foo"}')).toBe('{"a": "foo"}')
       expect(jsonrepair('{"a":\u205F"foo"}')).toBe('{"a": "foo"}')
       expect(jsonrepair('{"a":\u3000"foo"}')).toBe('{"a": "foo"}')
+      expect(jsonrepair('{"a":\ufeff"foo"}')).toBe('{"a": "foo"}')
     })
 
     test('should replace non normalized left/right quotes', () => {
