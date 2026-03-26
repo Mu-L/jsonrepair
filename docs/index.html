@@ -42,6 +42,9 @@
   <script type="module">
     import { jsonrepair } from 'https://cdn.jsdelivr.net/npm/jsonrepair@latest/+esm'
 
+    window.jsonrepair = jsonrepair
+    console.info("Hi there! You can use jsonrepair on the command line")
+
     function repairIt () {
       try {
         outputText.value = jsonrepair(inputText.value)
