@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.14.0](https://github.com/josdejong/jsonrepair/compare/v3.13.3...v3.14.0) (2026-04-16)
+
+
+### Features
+
+* [#160](https://github.com/josdejong/jsonrepair/issues/160) repair backslash-escaped newline characters ([3266141](https://github.com/josdejong/jsonrepair/commit/3266141dcb0d25c43008825c1749446bbcc44e9b))
+
 ### [3.13.3](https://github.com/josdejong/jsonrepair/compare/v3.13.2...v3.13.3) (2026-03-10)
 
 
