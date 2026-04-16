@@ -279,6 +279,10 @@ describe.each(implementations)('jsonrepair [$name]', ({ jsonrepair }) => {
       expect(jsonrepair('"\\a"')).toBe('"a"')
     })
 
+    test('should replace backslash-escaped newline characters', () => {
+      expect(jsonrepair('"first\\\nsecond"')).toBe('"first\\nsecond"')
+    })
+
     test('should repair a missing object value', () => {
       expect(jsonrepair('{"a":}')).toBe('{"a":null}')
       expect(jsonrepair('{"a":,"b":2}')).toBe('{"a":null,"b":2}')

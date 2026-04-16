@@ -595,6 +595,10 @@ export function jsonrepair(text: string): string {
             } else {
               throwInvalidUnicodeCharacter()
             }
+          } else if (char === '\n') {
+            // repair a backslash escaped newline (like in Bash scripts)
+            str += '\\n'
+            i += 2
           } else {
             // repair invalid escape character: remove it
             str += char

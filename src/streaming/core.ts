@@ -788,6 +788,10 @@ export function jsonrepairCore({
             } else {
               throwInvalidUnicodeCharacter()
             }
+          } else if (char === '\n') {
+            // repair a backslash escaped newline (like in Bash scripts)
+            output.push('\\n')
+            i += 2
           } else {
             // repair invalid escape character: remove it
             output.push(char)
